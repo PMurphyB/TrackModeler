@@ -19,10 +19,8 @@ xlabel("X");, ylabel("Y");, title("Track Map"), grid on;
 xlim([min(X) - 0.05,max(X) + 0.05]), ylim([min(Y) - 0.05,max(Y) + 0.05]);
 axis equal;
 
-% Create tracer point (blue dot)
 tracer = plot(X(1), Y(1), 'bo', 'MarkerSize', 8, 'MarkerFaceColor', 'b');
 
-% Animate tracer moving along the points
 for i = 1:length(X)
     set(tracer, 'XData', X(i), 'YData', Y(i));
     drawnow;
