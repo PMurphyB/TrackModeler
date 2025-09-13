@@ -1,6 +1,6 @@
 clc, clearvars, clear all
 
-data = readtable("track.xlsx");
+data = readtable("spline_points.xlsx");
 
 disp(data);
 
@@ -14,5 +14,7 @@ Y(invalidMask) = [];
 
 figure(1);
 plot(X, Y, 'g');
+scat
 xlabel("X");, ylabel("Y");, title("Track Map"), grid on;
-xlim([,X(end)]), ylim([Y(1), Y(end)]);
+xlim([min(X) - 25,max(X) + 25]), ylim([min(Y) - 25,max(Y) + 25]);
+axis equal;

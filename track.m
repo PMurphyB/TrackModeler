@@ -1,6 +1,6 @@
 clc, clearvars, clear all
 
-data = readtable("track.xlsx");
+data = readtable("spline_points.xlsx");
 
 disp(data);
 
@@ -17,3 +17,6 @@ plot(X, Y, 'g');
 xlabel("X");, ylabel("Y");, title("Track Map"), grid on;
 xlim([min(X) - 25,max(X) + 25]), ylim([min(Y) - 25,max(Y) + 25]);
 axis equal;
+
+scatter(X, Y, 'filled');
+axis equal, grid on;
