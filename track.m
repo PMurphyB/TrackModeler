@@ -1,6 +1,6 @@
 clc, clearvars, clear all
 
-data = readtable("spline_points.xlsx");
+data = readtable("fsaetrack.xlsx");
 
 disp(data);
 
@@ -16,7 +16,7 @@ figure(1);
 plot(X, Y, 'g');
 hold on;
 xlabel("X");, ylabel("Y");, title("Track Map"), grid on;
-xlim([min(X) - 0.05,max(X) + 0.05]), ylim([min(Y) - 0.05,max(Y) + 0.05]);
+xlim([min(X) - 25,max(X) + 25]), ylim([min(Y) - 25,max(Y) + 25]);
 axis equal;
 
 tracer = plot(X(1), Y(1), 'bo', 'MarkerSize', 8, 'MarkerFaceColor', 'b');
