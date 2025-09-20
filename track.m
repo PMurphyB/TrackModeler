@@ -1,6 +1,6 @@
 clc, clearvars, clear all
 
-data = readtable("spline_points.xlsx");
+data = readtable("spline_points1.xlsx");
 
 disp(data);
 
