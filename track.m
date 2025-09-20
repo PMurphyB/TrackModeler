@@ -39,10 +39,10 @@ orderedY(end + 1) = orderedY(1);
 
 %End of new code
 
-t = 1:length(X);
-tt = linspace(1, length(X), 2000);
-xx = interp1(t, X, tt, 'pchip');
-yy = interp1(t, Y, tt, 'pchip');
+t = 1:length(orderedX);
+tt = linspace(1, length(orderedX), 2000);
+xx = interp1(t, orderedX, tt, 'pchip');
+yy = interp1(t, orderedY, tt, 'pchip');
 
 figure(1);
 plot(xx, yy, 'g');
