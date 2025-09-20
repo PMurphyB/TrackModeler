@@ -15,8 +15,8 @@ Y(invalidMask) = [];
 %Start of new code
 
 n = length(X);
-orderedX = zeroes(n, 1);
-orderedY = zeroes(n, 1);
+orderedX = zeros(n, 1);
+orderedY = zeros(n, 1);
 used = false(n, 1);
 
 orderedX(1) = X(1);
