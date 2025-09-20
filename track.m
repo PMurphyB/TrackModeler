@@ -23,7 +23,7 @@ Y = coords_u(:,2);
 cx = mean(X);
 cy = mean(Y);
 
-[~, startIdx] = min((X - cx).^2 - (Y - cy).^2);
+[~, startIdx] = min((X - cx).^2 + (Y - cy).^2);
 
 n = length(X);
 orderedX = zeros(n, 1);
@@ -48,7 +48,7 @@ end
 orderedX(end + 1) = orderedX(1);
 orderedY(end + 1) = orderedY(1);
 
-d = sqrt(diff(orderedX.^2) + diff(orderedY.^2));
+d = sqrt((diff(orderedX).^2) + (diff(orderedY).^2));
 s = [0; cumsum(d)];
 
 if s(end) == 0
