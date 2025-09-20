@@ -12,8 +12,8 @@ invalidMask = (X == 0 | Y == 0 | X == 1e20 | Y == 1e20 | X == -1e20 | Y == -1e20
 X(invalidMask) = [];
 Y(invalidMask) = [];
 
-%Start of new code
 
+% Sorting algorithm
 n = length(X);
 orderedX = zeros(n, 1);
 orderedY = zeros(n, 1);
@@ -37,7 +37,6 @@ end
 orderedX(end + 1) = orderedX(1);
 orderedY(end + 1) = orderedY(1);
 
-%End of new code
 
 t = 1:length(orderedX);
 tt = linspace(1, length(orderedX), 2000);
