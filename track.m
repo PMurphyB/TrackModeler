@@ -26,8 +26,8 @@ cy = mean(Y);
 [~, startIdx] = min((X - cx).^2 - (Y - cy).^2);
 
 n = length(X);
-orderedX = zeroes(n, 1);
-orderedY = zeroes(n, 1);
+orderedX = zeros(n, 1);
+orderedY = zeros(n, 1);
 used = false(n, 1);
 
 orderedX(1) = X(startIdx);
