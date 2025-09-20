@@ -3,7 +3,7 @@ clc, clearvars, clear all
 infile = "fsaetrack.xlsx";
 outfile = "fsaetrack_fixed.xlsx";
 step = 0.01;
-interpPoints = 2000;
+interpPoints = 5000;
 jumpDetection = 5;
 axisPadding = 25;
 
@@ -48,8 +48,13 @@ end
 orderedX(end + 1) = orderedX(1);
 orderedY(end + 1) = orderedY(1);
 
-d = sqrt((diff(orderedX).^2) + (diff(orderedY).^2));
+d = sqrt(diff(orderedX).^2 + diff(orderedY).^2);
 s = [0; cumsum(d)];
+
+[sUnique, ia] = unique(s, 'stable');
+orderedX = orderedX(ia);
+orderedY = orderedY(ia);
+s = sUnique;
 
 if s(end) == 0
 
@@ -64,12 +69,12 @@ end
 
 figure(1); 
 clf;
-plot(xx, yy, 'g-', 'LineWidth', 1.5);
+plot(xx, yy, 'g-', 'LineWidth', 3);
 hold on;
-plot(orderedX, orderedY, 'ko', 'MarkerSize', 3);
+%plot(orderedX, orderedY, 'ko', 'MarkerSize', 3);
 axis equal;
-xlim([min(xx) - axisPadding, max(xx + axisPadding)]);
-ylim([min(yy) - axisPadding, max(yy + axisPadding)]);
+xlim([min(xx) - axisPadding, max(xx) + axisPadding]);
+ylim([min(yy) - axisPadding, max(yy) + axisPadding]);
 
 d_consec = sqrt(diff(orderedX).^2 + diff(orderedY).^2);
 th = median(d_consec) + jumpDetection * std(d_consec);
