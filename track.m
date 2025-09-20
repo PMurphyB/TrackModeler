@@ -72,6 +72,7 @@ clf;
 plot(xx, yy, 'g-', 'LineWidth', 3);
 hold on;
 %plot(orderedX, orderedY, 'ko', 'MarkerSize', 3);
+plot(orderedX, orderedY, '.', 'Color', [0.5 0.5 0.5], 'MarkerSize', 3);
 axis equal;
 xlim([min(xx) - axisPadding, max(xx) + axisPadding]);
 ylim([min(yy) - axisPadding, max(yy) + axisPadding]);
@@ -85,8 +86,16 @@ for k = bigIdx.'
     text(orderedX(k), orderedY(k), sprintf(' %d', k), 'Color', 'r', 'FontSize', 10);
 end
 
-tracer = plot(xx(1), yy(1), 'bo', 'MarkerSize', 8, 'MarkerFaceColor', 'b');
-for i = 1:length(xx)
+
+reverseDirection = true;
+if reverseDirection
+    idxRange = length(xx):-1:1;
+else
+    idxRange = 1:length(xx);
+end
+
+tracer = plot(xx(idxRange(1)), yy(idxRange(1)), 'bo', 'MarkerSize', 8, 'MarkerFaceColor', 'b');
+for i = idxRange
     set(tracer, 'XData', xx(i), 'YData', yy(i));
     drawnow;
     pause(step);
