@@ -3,7 +3,7 @@ clc, clearvars, clear all
 infile = "fsaetrack.xlsx";
 outfile = "fsaetrack_fixed.xlsx";
 step = 0.01;
-interPoints = 2000;
+interpPoints = 2000;
 jumpDetection = 5;
 axisPadding = 25;
 
@@ -57,7 +57,7 @@ if s(end) == 0
     yy = orderedY;
 
 else
-    tt = linspace(0, s(end), interPoints);
+    tt = linspace(0, s(end), interpPoints);
     xx = interp1(s, orderedX, tt, 'pchip');
     yy = interp1(s, orderedY, tt, 'pchip');
 end
