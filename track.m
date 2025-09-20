@@ -3,8 +3,8 @@ clc, clearvars, clear all
 infile = "fsaetrack.xlsx";
 outfile = "fsaetrack_fixed.xlsx";
 step = 0.01;
-interpPoints = 5000;
-jumpDetection = 5;
+interpPoints = 5000; % Using for interpolation accuracy
+jumpDetection = 5; % Detects large jumps
 axisPadding = 25;
 
 data = readtable(infile);
@@ -16,14 +16,13 @@ X(invalidMask) = [];
 Y(invalidMask) = [];
 
 coords = [X Y];
-[coords_u, ~, ~] = unique(coords, 'rows', 'stable');
+[coords_u, ~, ~] = unique(coords, 'rows', 'stable'); % Removes dupes
 X = coords_u(:,1);
 Y = coords_u(:,2);
 
 cx = mean(X);
 cy = mean(Y);
-
-[~, startIdx] = min((X - cx).^2 + (Y - cy).^2);
+[~, startIdx] = min((X - cx).^2 + (Y - cy).^2); % Start line right now is just the center, can be changed however.
 
 n = length(X);
 orderedX = zeros(n, 1);
@@ -34,6 +33,7 @@ orderedX(1) = X(startIdx);
 orderedY(1) = Y(startIdx);
 used(startIdx) = true;
 
+% Uses greedy nearest neighbor, used ChatGPT
 for k = 2:n
     dx = X - orderedX(k - 1);
     dy = Y - orderedY(k - 1);
