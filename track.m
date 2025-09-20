@@ -12,6 +12,33 @@ invalidMask = (X == 0 | Y == 0 | X == 1e20 | Y == 1e20 | X == -1e20 | Y == -1e20
 X(invalidMask) = [];
 Y(invalidMask) = [];
 
+%Start of new code
+
+n = length(X);
+orderedX = zeroes(n, 1);
+orderedY = zeroes(n, 1);
+used = false(n, 1);
+
+orderedX(1) = X(1);
+orderedY(1) = Y(1);
+used(1) = true;
+
+for k = 2:n
+    dx = X - orderedX(k - 1);
+    dy = Y - orderedY(k - 1);
+    dist = sqrt(dx.^2 + dy.^2);
+    dist(used) = inf;
+    [~, idx] = min(dist);
+    orderedX(k) = X(idx);
+    orderedY(k) = Y(idx);
+    used(idx) = true;
+end
+
+orderedX(end + 1) = orderedX(1);
+orderedY(end + 1) = orderedY(1);
+
+%End of new code
+
 t = 1:length(X);
 tt = linspace(1, length(X), 2000);
 xx = interp1(t, X, tt, 'pchip');
